@@ -753,7 +753,7 @@ SetLink
     def SetDataDir(self,get):
         if get.datadir[-1] == '/': get.datadir = get.datadir[0:-1]
         if len(get.datadir) > 32: return public.returnMsg(False,'The data directory length cannot exceed 32 bits')
-        if not re.search(r"^[0-9A-Za-z_/\\]$+",get.datadir): return public.returnMsg(False,'Special symbols cannot be included in the database path')
+        if not re.search(r"^[0-9A-Za-z_/\\]*$",get.datadir): return public.returnMsg(False,'Special symbols cannot be included in the database path')
         if not os.path.exists(get.datadir): public.ExecShell('mkdir -p ' + get.datadir)
         mysqlInfo = self.GetMySQLInfo(get)
         if mysqlInfo['datadir'] == get.datadir: return public.returnMsg(False,'DATABASE_MOVE_RE')
